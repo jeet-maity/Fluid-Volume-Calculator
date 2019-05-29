@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Calculator.cs" />
-    <Compile Include="Barrel.cs" />
+    <Compile Include="OilBarrel.cs" />
     <Compile Include="CubicFeet.cs" />
     <Compile Include="ArrayHelper.cs" />
     <Compile Include="CubicMetre.cs" />

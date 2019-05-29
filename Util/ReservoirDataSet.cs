@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace Util
 {
+    /// <summary>Represents an entire data set of the challenge</summary>
     public class ReservoirDataSet
     {
+        /// <summary>Initializes a new instance of the <see cref="ReservoirDataSet"/> class.</summary>
+        /// <param name="topHorizonCoordinateMatrix">The top horizon coordinate matrix.</param>
+        /// <param name="horizonDepth">The horizon depth.</param>
+        /// <param name="gridCellSize">Size of the grid cell.</param>
+        /// <param name="fluidContact">The fluid contact.</param>
         public ReservoirDataSet(Feet[,] topHorizonCoordinateMatrix, Feet horizonDepth, Feet gridCellSize, Feet fluidContact)
         {
             this.TopHorizonCoordinateMatrix = topHorizonCoordinateMatrix;
@@ -16,11 +22,24 @@ namespace Util
             this.FluidContact = fluidContact;
         }
 
+        /// <summary>Gets the top horizon coordinate matrix.</summary>
+        /// <value>The top horizon coordinate matrix.</value>
         public Feet[,] TopHorizonCoordinateMatrix { get; private set; }
+
+        /// <summary>Gets the horizon depth.</summary>
+        /// <value>The horizon depth.</value>
         public Feet HorizonDepth { get; private set; }
+
+        /// <summary>Gets the size of the grid cell.</summary>
+        /// <value>The size of the grid cell.</value>
         public Feet GridCellSize { get; private set; }
+
+        /// <summary>Gets the fluid contact.</summary>
+        /// <value>The fluid contact.</value>
         public Feet FluidContact { get; private set; }
 
+        /// <summary>Gets the precious fluid (Oil and Gas) height matrix.</summary>
+        /// <value>The precious fluid height matrix.</value>
         public Feet[,] PreciousFluidHeightMatrix
         {
             get
@@ -36,74 +55,16 @@ namespace Util
             }
         }
 
-        /*
-        #region Obsolete..
-        public Feet[,] TopSurfaceHeightMatrix
-        {
-            get
-            {
-                Feet[,] effectiveDepths = new Feet[this.TopHorizonCoordinateMatrix.GetLength(0), this.TopHorizonCoordinateMatrix.GetLength(1)];
-
-                for (int i = 0; i < this.TopHorizonCoordinateMatrix.GetLength(0); i++)
-                    for (int j = 0; j < this.TopHorizonCoordinateMatrix.GetLength(1); j++)
-                        effectiveDepths[i, j] = this.EvaluateEffectiveDepth(this.TopHorizonCoordinateMatrix[i, j], this.FluidContact);
-
-                return effectiveDepths;
-            }
-        }
-        public Feet[,] BottomSurfaceHeightMatrix
-        {
-            get
-            {
-                Feet[,] effectiveDepths = new Feet[this.TopHorizonCoordinateMatrix.GetLength(0), this.TopHorizonCoordinateMatrix.GetLength(1)];
-
-                for (int i = 0; i < this.TopHorizonCoordinateMatrix.GetLength(0); i++)
-                    for (int j = 0; j < this.TopHorizonCoordinateMatrix.GetLength(1); j++)
-                        effectiveDepths[i, j] = this.EvaluateEffectiveDepth(this.TopHorizonCoordinateMatrix[i, j] + this.HorizonDepth, this.FluidContact);
-
-                return effectiveDepths;
-            }
-        }
-        private Feet EvaluateEffectiveDepth(Feet horizonPoint, Feet fluidContact)
-        {
-            return new Feet(Math.Max((fluidContact - horizonPoint).Value, 0m));
-        }
-        public IUnitOfVolume EvaluateVolume(Feet[,] topSurfaceMatrix, Feet[,] bottomSurfaceMatrix, VolumeUnit expectedUnit)
-        {
-            IUnitOfVolume topSurfaceVolume = this.EvaluateVolumeUnderSurface(topSurfaceMatrix);
-            IUnitOfVolume bottomSurfaceVolume = this.EvaluateVolumeUnderSurface(bottomSurfaceMatrix);
-
-            IUnitOfVolume effectiveVolume = new CubicFeet(topSurfaceVolume.Value - bottomSurfaceVolume.Value);
-            switch (expectedUnit)
-            {
-                case VolumeUnit.CubicFeet:
-                    return effectiveVolume;
-                case VolumeUnit.CubicMetre:
-                    return UnitConverter.CubicFeetToCubicMetre(effectiveVolume as CubicFeet);
-                case VolumeUnit.Barrel:
-                    return UnitConverter.CubicFeetToBarrels(effectiveVolume as CubicFeet);
-                default:
-                    throw new NotSupportedException("Unsupported VolumeUnit");
-            }
-        }
-
-        private IUnitOfVolume EvaluateVolumeUnderSurface(IUnitOfLength[,] surfaceMatrix)
-        {
-            List<IUnitOfArea> crossSections = new List<IUnitOfArea>();
-            ArrayHelper<IUnitOfLength> helper = new ArrayHelper<IUnitOfLength>();
-            for (int i = 0; i < surfaceMatrix.GetLength(0); i++)
-                crossSections.Add(Calculator.EvaluateArea(helper.GetRow(surfaceMatrix, i)));
-
-            return Calculator.EvaluateVolume(crossSections.ToArray());
-        }
-        #endregion
-        */
-
+        /// <summary>Evaluates the volume of Oil and Gas between the 2 horizons and above the fluid contact in <see cref="CubicFeet"/> <see cref="CubicMetre"/> and <see cref="OilBarrel"/>.</summary>
+        /// <returns></returns>
         public IEnumerable<IUnitOfVolume> EvaluateVolume()
         {
             return EvaluateVolume(this.PreciousFluidHeightMatrix);
         }
 
+        /// <summary>Evaluates the volume of Oil and Gas between the 2 horizons and above the fluid contact in <see cref="CubicFeet"/> <see cref="CubicMetre"/> and <see cref="OilBarrel"/>.</summary>
+        /// <param name="preciousFluidHeightMatrix">The precious fluid height matrix.</param>
+        /// <returns></returns>
         public IEnumerable<IUnitOfVolume> EvaluateVolume(Feet[,] preciousFluidHeightMatrix)
         {
             List<IUnitOfVolume> estimatedVolumes = new List<IUnitOfVolume>();
@@ -118,7 +79,9 @@ namespace Util
             return estimatedVolumes;
         }
 
-
+        /// <summary>volume of Oil and Gas between the 2 horizons and above the fluid contact in <see cref="IUnitOfVolume"/>.</summary>
+        /// <param name="preciousFluidHeightMatrix">The precious fluid height matrix.</param>
+        /// <returns></returns>
         private IUnitOfVolume EvaluatePreciousVolume(IUnitOfLength[,] preciousFluidHeightMatrix)
         {
             List<IUnitOfArea> crossSections = new List<IUnitOfArea>();
@@ -129,6 +92,11 @@ namespace Util
             return Calculator.EvaluateVolume(crossSections.ToArray(), this.GridCellSize);
         }
 
+        /// <summary>Helper to evaluate the height of Oil and Gas at a given location on the grid or matrix.</summary>
+        /// <param name="topHorizonPoint">The top horizon point.</param>
+        /// <param name="horizonDepth">The horizon depth.</param>
+        /// <param name="fluidContact">The fluid contact.</param>
+        /// <returns></returns>
         private Feet EvaluateEffectiveHeight(Feet topHorizonPoint, Feet horizonDepth, Feet fluidContact)
         {
             return new Feet(Math.Max(Math.Min((fluidContact - topHorizonPoint).Value, horizonDepth.Value), 0m));

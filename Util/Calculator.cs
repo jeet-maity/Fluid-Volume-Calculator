@@ -8,6 +8,11 @@ namespace Util
 {
     static class Calculator
     {
+        /// <summary>Evaluates the area.</summary>
+        /// <param name="functionValues">The function values.</param>
+        /// <param name="intervalDistance">The interval distance.</param>
+        /// <returns></returns>
+        /// <exception cref="NotSupportedException">Unsupported LengthUnit: {nameof(intervalDistance)}</exception>
         public static IUnitOfArea EvaluateArea(IUnitOfLength[] functionValues, IUnitOfLength intervalDistance)
         {
             // 26 areas
@@ -23,6 +28,11 @@ namespace Util
             }
         }
 
+        /// <summary>Evaluates the volume.</summary>
+        /// <param name="functionValues">The function values.</param>
+        /// <param name="intervalDistance">The interval distance.</param>
+        /// <returns></returns>
+        /// <exception cref="NotSupportedException">Unsupported LengthUnit: {nameof(intervalDistance)}</exception>
         public static IUnitOfVolume EvaluateVolume(IUnitOfArea[] functionValues, IUnitOfLength intervalDistance)
         {
             if (null == functionValues || functionValues.Length <= 1)
@@ -51,6 +61,10 @@ namespace Util
             }
         }
 
+        /// <summary>Applies the simpsons rule.</summary>
+        /// <param name="functionValues">The function values.</param>
+        /// <param name="intervalValue">The interval value.</param>
+        /// <returns></returns>
         private static decimal ApplySimpsonsRule(decimal[] functionValues, decimal intervalValue)
         {
             decimal oddFuncValuesSum = 0m;
@@ -63,6 +77,10 @@ namespace Util
             return decimal.Divide(intervalValue, 3m) * (functionValues[0] + functionValues[functionValues.Length - 1] + (4m * oddFuncValuesSum) + (2m * evenFuncValuesSum));
         }
 
+        /// <summary>Applies the trapezoidal rule.</summary>
+        /// <param name="functionValues">The function values.</param>
+        /// <param name="intervalValue">The interval value.</param>
+        /// <returns></returns>
         private static decimal ApplyTrapezoidalRule(decimal[] functionValues, decimal intervalValue)
         {
             decimal intermediateSum = 0m;

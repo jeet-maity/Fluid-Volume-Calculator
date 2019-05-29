@@ -29,6 +29,9 @@ namespace UI
         private void BtnOpenDataFile_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
+            dlg.CheckFileExists = true;
+            dlg.CheckPathExists = true;
+            dlg.InitialDirectory = AppDomain.CurrentDomain.BaseDirectory;
             dlg.DefaultExt = ".txt";
             Nullable<bool> result = dlg.ShowDialog();
             if (result.HasValue && result.Value)

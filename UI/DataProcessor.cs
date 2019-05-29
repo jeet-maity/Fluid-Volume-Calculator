@@ -8,8 +8,15 @@ using Util;
 
 namespace UI
 {
+    /// <summary>Processes UI input</summary>
     class DataProcessor
     {
+        /// <summary>Finds the volume of Oil and Gas between the 2 horizons and above the fluid contact.</summary>
+        /// <param name="path">The file path of the file containing the grid values of the top horizon depths.</param>
+        /// <param name="horizonDepth">The horizon depth.</param>
+        /// <param name="gridCellSize">Size of the grid cell.</param>
+        /// <param name="fluidContact">The fluid contact.</param>
+        /// <returns></returns>
         internal Dictionary<int, string> FindVolume(string path, decimal horizonDepth, decimal gridCellSize, decimal fluidContact)
         {
             Dictionary<int, string> display = new Dictionary<int, string>();
@@ -31,6 +38,9 @@ namespace UI
             return display;
         }
 
+        /// <summary>Formats top horizon depth values from file to a 2D array.</summary>
+        /// <param name="path">The file path.</param>
+        /// <returns></returns>
         private Feet[,] GetMatrix(string path)
         {
             IEnumerable<string> lazyLines = File.ReadLines(path);
