@@ -13,9 +13,9 @@ namespace Util
             return new CubicMetre(volumeInCubicFeet.Value * 0.3048m * 0.3048m * 0.3048m);
         }
 
-        public static Barrel CubicFeetToBarrels(CubicFeet volumeInCubicFeet)
+        public static OilBarrel CubicFeetToBarrels(CubicFeet volumeInCubicFeet)
         {
-            return new Barrel(volumeInCubicFeet.Value * 0.237476809m);
+            return new OilBarrel(volumeInCubicFeet.Value * 0.178107607m);
         }
     }
 }

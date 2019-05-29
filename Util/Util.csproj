@@ -46,7 +46,7 @@
     <Compile Include="CubicFeet.cs" />
     <Compile Include="ArrayHelper.cs" />
     <Compile Include="CubicMetre.cs" />
-    <Compile Include="DataSet.cs" />
+    <Compile Include="ReservoirDataSet.cs" />
     <Compile Include="Enumerations.cs" />
     <Compile Include="Feet.cs" />
     <Compile Include="IUnitOfArea.cs" />

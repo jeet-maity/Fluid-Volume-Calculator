@@ -1,0 +1,27 @@
+﻿<Window x:Class="UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI"
+        mc:Ignorable="d"
+        Title="Programming Challenge" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="btnOpenDataFile" Content="Open Dataset File" HorizontalAlignment="Left" Margin="214,19,0,0" VerticalAlignment="Top" Width="79" Click="BtnOpenDataFile_Click" AutomationProperties.HelpText="Open the file containig the depth values (in ft) of the top horizon"/>
+        <TextBox x:Name="txtFilePath" HorizontalAlignment="Left" Height="20" Margin="325,19,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" AutomationProperties.HelpText="The file path containig the space-separated depth values (in ft) of the top horizon matrix"/>
+        <TextBox x:Name="txtGridCellSize" HorizontalAlignment="Left" Height="23" Margin="325,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" AutomationProperties.HelpText="Assuming a square grid cell, enter the cell size"/>
+        <Label x:Name="lblGridCellSize" Content="Grid Cell Size (feet)" HorizontalAlignment="Left" Margin="188,55,0,0" VerticalAlignment="Top" Width="116" RenderTransformOrigin="0.397,0.462"/>
+        <Label x:Name="lblFluidContact" Content="Fluid Contact Depth (metre)" HorizontalAlignment="Left" Margin="144,81,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.406,1.038" Width="160"/>
+        <TextBox x:Name="txtFluidContact" HorizontalAlignment="Left" Height="23" Margin="325,83,0,0" TextWrapping="Wrap" Text="&#xD;&#xA;" VerticalAlignment="Top" Width="120" AutomationProperties.HelpText="Fluid contact depth"/>
+        <Label x:Name="lblHorizonDepth" Content="Horizon Depth (metre)&#xD;&#xA;" HorizontalAlignment="Left" Margin="170,111,0,0" VerticalAlignment="Top" AutomationProperties.HelpText="Distance between top and base horizon" Width="134" Height="29"/>
+        <TextBox x:Name="txtHorizonDepth" HorizontalAlignment="Left" Height="23" Margin="325,111,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" AutomationProperties.HelpText="Distance between top and base horizon"/>
+        <Button x:Name="btnEstimateVolume" Content="Estimate Volume" HorizontalAlignment="Left" Margin="176,168,0,0" VerticalAlignment="Top" Width="117" RenderTransformOrigin="-0.24,-0.45" IsDefault="True" Click="BtnEstimateVolume_Click"/>
+        <Label x:Name="lblVolCubicFeet" Content="Volume (cubic feet)" HorizontalAlignment="Left" Margin="192,193,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <Label x:Name="lblVolCubicMetre" Content="Volume (cubic metre)" HorizontalAlignment="Left" Margin="181,224,0,0" VerticalAlignment="Top" IsEnabled="False"/>
+        <Label x:Name="lblVolBarrel" Content="Volume (barrel)" HorizontalAlignment="Left" Margin="213,255,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.648,0.462" IsEnabled="False"/>
+        <TextBox x:Name="txtVolCubicFeet" HorizontalAlignment="Left" Height="23" Margin="325,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in cubic feet" IsEnabled="False"/>
+        <TextBox x:Name="txtVolCubicMetre" HorizontalAlignment="Left" Height="23" Margin="325,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in cubic metre" IsEnabled="False"/>
+        <TextBox x:Name="txtVolBarrel" HorizontalAlignment="Left" Height="23" Margin="325,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in barrels" IsEnabled="False"/>
+
+    </Grid>
+</Window>

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Util
 {
-    class DataSet
+    public class ReservoirDataSet
     {
-        public DataSet(Feet[,] topHorizonCoordinateMatrix, Feet horizonDepth, Feet gridCellSize, Feet fluidContact)
+        public ReservoirDataSet(Feet[,] topHorizonCoordinateMatrix, Feet horizonDepth, Feet gridCellSize, Feet fluidContact)
         {
             this.TopHorizonCoordinateMatrix = topHorizonCoordinateMatrix;
             this.HorizonDepth = horizonDepth;
@@ -99,25 +99,23 @@ namespace Util
         #endregion
         */
 
-        public IUnitOfVolume EvaluateVolume(VolumeUnit expectedUnit)
+        public IEnumerable<IUnitOfVolume> EvaluateVolume()
         {
-            return EvaluateVolume(this.PreciousFluidHeightMatrix, expectedUnit);
+            return EvaluateVolume(this.PreciousFluidHeightMatrix);
         }
 
-        public IUnitOfVolume EvaluateVolume(Feet[,] preciousFluidHeightMatrix, VolumeUnit expectedUnit)
+        public IEnumerable<IUnitOfVolume> EvaluateVolume(Feet[,] preciousFluidHeightMatrix)
         {
-            IUnitOfVolume effectiveVolume = this.EvaluatePreciousVolume(preciousFluidHeightMatrix);
-            switch (expectedUnit)
-            {
-                case VolumeUnit.CubicFeet:
-                    return effectiveVolume;
-                case VolumeUnit.CubicMetre:
-                    return UnitConverter.CubicFeetToCubicMetre(effectiveVolume as CubicFeet);
-                case VolumeUnit.Barrel:
-                    return UnitConverter.CubicFeetToBarrels(effectiveVolume as CubicFeet);
-                default:
-                    throw new NotSupportedException($"Unsupported VolumeUnit: {nameof(expectedUnit)}");
-            }
+            List<IUnitOfVolume> estimatedVolumes = new List<IUnitOfVolume>();
+
+            IUnitOfVolume effectiveVolumeCubicFeet = this.EvaluatePreciousVolume(preciousFluidHeightMatrix);
+            IUnitOfVolume effectiveVolumeCubicMetre = UnitConverter.CubicFeetToCubicMetre(effectiveVolumeCubicFeet as CubicFeet);
+            IUnitOfVolume effectiveVolumeBarrel = UnitConverter.CubicFeetToBarrels(effectiveVolumeCubicFeet as CubicFeet);
+            estimatedVolumes.Add(effectiveVolumeCubicFeet);
+            estimatedVolumes.Add(effectiveVolumeCubicMetre);
+            estimatedVolumes.Add(effectiveVolumeBarrel);
+
+            return estimatedVolumes;
         }
 
 
