@@ -38,7 +38,6 @@ namespace Util
             if (null == functionValues || functionValues.Length <= 1)
                 return new CubicFeet(0m);
 
-            // 16 volumes
             decimal volumeValue;
             if (functionValues.Length == 2)
                 volumeValue = Calculator.ApplyTrapezoidalRule(functionValues.Select(x => x.Value).ToArray(), intervalDistance.Value);
@@ -47,7 +46,7 @@ namespace Util
             else
             {
                 volumeValue = Calculator.ApplySimpsonsRule(functionValues.Skip(1).Select(x => x.Value).ToArray(), intervalDistance.Value)
-                 + Calculator.ApplyTrapezoidalRule(functionValues.Skip(Math.Max(0, functionValues.Count() - 2)).Select(x=>x.Value).ToArray(), intervalDistance.Value);
+                     + Calculator.ApplyTrapezoidalRule(functionValues.Take(2).Select(x => x.Value).ToArray(), intervalDistance.Value);
             }
 
             switch (intervalDistance.Unit)
