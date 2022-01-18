@@ -1,4 +1,4 @@
-# Programming Challenge
+# Task
 
 The application should calculate the volume of Oil & Gas between the 2 horizons and above the fluid contact.
 The user should be able to get the results in of the following 3 units: cubic meter, cubic feet and barrels.
