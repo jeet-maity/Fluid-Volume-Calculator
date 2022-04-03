@@ -19,9 +19,9 @@
         <Label x:Name="lblVolCubicFeet" Content="Volume (cubic feet)" HorizontalAlignment="Left" Margin="192,193,0,0" VerticalAlignment="Top" IsEnabled="False"/>
         <Label x:Name="lblVolCubicMetre" Content="Volume (cubic metre)" HorizontalAlignment="Left" Margin="181,224,0,0" VerticalAlignment="Top" IsEnabled="False"/>
         <Label x:Name="lblVolBarrel" Content="Volume (US oil barrel)" HorizontalAlignment="Left" Margin="176,258,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.648,0.462" IsEnabled="False" Width="129"/>
-        <TextBox x:Name="txtVolCubicFeet" HorizontalAlignment="Left" Height="23" Margin="325,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in cubic feet" IsEnabled="False"/>
-        <TextBox x:Name="txtVolCubicMetre" HorizontalAlignment="Left" Height="23" Margin="325,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in cubic metre" IsEnabled="False"/>
-        <TextBox x:Name="txtVolBarrel" HorizontalAlignment="Left" Height="23" Margin="325,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in barrels" IsEnabled="False"/>
+        <TextBox x:Name="txtVolCubicFeet" HorizontalAlignment="Left" Height="23" Margin="325,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in cubic feet" />
+        <TextBox x:Name="txtVolCubicMetre" HorizontalAlignment="Left" Height="23" Margin="325,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in cubic metre" />
+        <TextBox x:Name="txtVolBarrel" HorizontalAlignment="Left" Height="23" Margin="325,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in barrels" />
 
     </Grid>
 </Window>
