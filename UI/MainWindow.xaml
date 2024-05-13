@@ -22,6 +22,7 @@
         <TextBox x:Name="txtVolCubicFeet" HorizontalAlignment="Left" Height="23" Margin="325,193,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in cubic feet" />
         <TextBox x:Name="txtVolCubicMetre" HorizontalAlignment="Left" Height="23" Margin="325,227,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in cubic metre" />
         <TextBox x:Name="txtVolBarrel" HorizontalAlignment="Left" Height="23" Margin="325,258,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="437" RenderTransformOrigin="0.492,-0.087" AutomationProperties.HelpText="Estimated volume in barrels" />
+        <Button x:Name="btnClearResults" Content="Clear Results" HorizontalAlignment="Left" Margin="176,299,0,0" VerticalAlignment="Top" Width="117" RenderTransformOrigin="-0.24,-0.45" IsDefault="True" Click="BtnClearResults_Click"/>
 
     </Grid>
 </Window>

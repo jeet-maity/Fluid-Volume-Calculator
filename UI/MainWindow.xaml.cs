@@ -56,5 +56,13 @@ namespace UI
             this.txtVolCubicMetre.Text = volumes[1];
             this.txtVolBarrel.Text = volumes[2];
         }
+
+        private void BtnClearResults_Click(object sender, RoutedEventArgs e)
+        {
+            txtFilePath.Clear();
+            txtVolCubicMetre.Clear();
+            txtVolBarrel.Clear();
+            txtVolCubicFeet.Clear();
+        }
     }
 }
